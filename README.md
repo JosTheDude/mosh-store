@@ -1,29 +1,132 @@
-# Create T3 App
+# PayNow.gg - Headless API Example
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+An integration of the PayNow.gg Headless API built with Create T3 App, Next.js 15 and React 19 for kickstarting your next store design.
 
-## What's next? How do I make an app with this?
+## Features
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+- 🛒 Complete e-commerce store template
+- 🎨 Fully customizable theming system
+- 🔐 PayNow.gg Steam & Minecraft API Integration
+- 🧩 Built-in support for PayNow Template Modules
+- ⚡ Built with Next.js v15 & React v19
+- 📱 Mobile responsive design
+- 🚀 Ready for production deployment
+- ✨ A marvellous user experience
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## Demo
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+You can view a demo of this repository [here](https://headless-template.pages.dev/)
 
-## Learn More
+## Prerequisites
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+- Node.js 20+ 
+- pnpm
+- A PayNow.gg account for API access
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+## Setup
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+This project uses [pnpm](https://pnpm.io/)
 
-## How do I deploy this?
+```bash
+pnpm install
+```
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+### Environment
+
+Create your .env file with the following command
+
+```bash
+cp .env.example .env
+```
+
+Then make sure to fill in your environment variables.
+
+### Getting your API Key
+
+Head to the [Roles](https://dashboard.paynow.gg/roles) page of your PayNow Dashboard and create a new role with the following permissions:
+
+- View Store
+- View Customers
+- Create Customers
+- View Giftcards
+
+After doing so, head to the [API Keys](https://dashboard.paynow.gg/api-keys) page on the dashboard and create an API Key with the assigned role.
+
+The API Key provided is your `PAYNOW_API_KEY` environment variable.
+
+### Running the Development Server
+
+```bash
+pnpm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+
+## Theming
+
+The website's color scheme is fully configurable by editing the CSS file located at `/src/styles/globals.css`
+
+```css
+:root {
+  --radius: 0.65rem;
+
+  --background: #09090b;
+  --background-secondary: #8e51ff;
+
+  --foreground: #fafafa;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: #7f22fe;
+
+  --card: #18181b;
+  --card-foreground: #fafafa;
+  --popover: #18181b;
+  --popover-foreground: #fafafa;
+
+  --primary: #7f22fe;
+  --primary-foreground: #f5f3ff;
+
+  --secondary: #27272a;
+  --secondary-foreground: #fafafa;
+  --muted: #27272a;
+  --muted-foreground: #9f9fa9;
+  --accent: #27272a;
+  --accent-foreground: #fafafa;
+
+  --destructive: #f53b3e;
+
+  --chart-1: #1447e6;
+  --chart-2: #00bc7d;
+  --chart-3: #fe9a00;
+  --chart-4: #ad46ff;
+  --chart-5: #ff2056;
+
+  --sidebar: #18181b;
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: #7f22fe;
+  --sidebar-primary-foreground: #f5f3ff;
+  --sidebar-accent: #27272a;
+  --sidebar-accent-foreground: #fafafa;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: #7f22fe;
+}
+```
+
+## Deployment
+
+This project can be deployed on various platforms. For detailed deployment instructions, see the [T3 Stack Deployment Guide](https://create.t3.gg/en/deployment).
+
+### Quick Deploy Options:
+
+- **Vercel**: Connect your GitHub repo for automatic deployments
+- **Netlify**: Deploy directly from your repository
+
+## Support
+
+For support, questions, or more information, join our Discord community:
+
+- [Discord](https://discord.com/invite/paynow)
+
+## Contributing
+
+Contributions are welcome! If you'd like to improve the template or suggest new features, please fork the repository, make your changes, and submit a pull request.
