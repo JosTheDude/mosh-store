@@ -16,7 +16,7 @@ import Header from "~/components/header/header";
 import GiftcardBalanceCard from "~/components/modules/giftcard-balance-card";
 import PaymentGoalCard from "~/components/modules/payment-goal-card";
 import RecentPaymentsCard from "~/components/modules/recent-payments-card";
-import NavlinkCard from "~/components/navbar/navlink-card";
+import NavlinkCard from "~/components/navlink/navlink-card";
 import { env } from "~/env";
 import type Module from "~/server/api/types/paynow/module";
 import { api } from "~/trpc/react";

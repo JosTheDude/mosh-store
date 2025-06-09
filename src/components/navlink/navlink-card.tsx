@@ -9,7 +9,7 @@ import {
   CollapsibleTrigger,
 } from "~/components/ui/collapsible";
 import { api } from "~/trpc/react";
-import { Card, CardContent } from "./../ui/card";
+import { Card, CardContent } from "../ui/card";
 
 export default function NavlinkCard() {
   const { data: navlinks } = api.paynow.getNavlinks.useQuery();
