@@ -3,7 +3,7 @@ import { Card, CardContent } from "../ui/card";
 export default function Footer() {
   return (
     <footer>
-      <div className="mx-auto mb-6 max-w-7xl rounded-md p-4 xl:p-0">
+      <div className="mx-auto mb-6 max-w-7xl rounded-md p-4 xl:p-0 mt-3">
         <Card>
           <CardContent>
             <div className="flex flex-col gap-4 text-sm sm:flex-row sm:items-center sm:justify-between sm:gap-6">
