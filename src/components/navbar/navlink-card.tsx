@@ -14,6 +14,10 @@ import { Card, CardContent } from "./../ui/card";
 export default function NavlinkCard() {
   const { data: navlinks } = api.paynow.getNavlinks.useQuery();
 
+  if (!navlinks?.length) {
+    return null;
+  }
+
   return (
     <Card className="p-6">
       <CardContent className="p-0">
