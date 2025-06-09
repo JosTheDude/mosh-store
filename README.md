@@ -48,6 +48,7 @@ Head to the [Roles](https://dashboard.paynow.gg/roles) page of your PayNow Dashb
 - View Store
 - View Customers
 - Create Customers
+- Update Customers
 - View Giftcards
 
 After doing so, head to the [API Keys](https://dashboard.paynow.gg/api-keys) page on the dashboard and create an API Key with the assigned role.
