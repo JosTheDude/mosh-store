@@ -63,22 +63,22 @@ export default function DefaultLayout({
       <section>
         <div className="mx-auto md:max-w-7xl">
           <div className="grid grid-cols-3 items-center py-6 md:py-12">
-            <div className="hidden items-center gap-6 lg:flex">
-              <div className="flex-1 text-right">
-                <h3 className="font-bold text-2xl">Play Now</h3>
+            <button
+              type="button"
+              className="group hidden cursor-pointer items-center gap-6 lg:flex"
+              onClick={handleCopy}
+            >
+              <div className="flex w-full flex-col items-end text-right">
+                <span className="block font-bold text-2xl">Play Now</span>
 
-                <button
-                  type="button"
-                  onClick={handleCopy}
-                  className="group ml-auto flex items-center gap-1"
-                >
+                <div className="flex items-center gap-1">
                   <CopyIcon
                     size={16}
                     className="opacity-0 transition-opacity group-hover:opacity-100"
                   />
 
-                  {env.NEXT_PUBLIC_GAMESERVER_CONNECTION_MESSAGE}
-                </button>
+                  <span>{env.NEXT_PUBLIC_GAMESERVER_CONNECTION_MESSAGE}</span>
+                </div>
               </div>
 
               <div className="relative w-min rounded-full bg-accent p-3">
@@ -93,7 +93,7 @@ export default function DefaultLayout({
 
                 <PlayIcon weight="fill" height={36} width={36} />
               </div>
-            </div>
+            </button>
 
             <div className="col-span-3 lg:col-span-1">
               <div className="mx-auto flex size-52 items-center justify-center overflow-hidden">
