@@ -106,6 +106,8 @@
       var(--background),
       var(--background-secondary)
     ) !important;
+
+    overscroll-behavior: none;
   }
 
   button {
