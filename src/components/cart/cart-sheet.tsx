@@ -103,10 +103,34 @@ function CartSheet() {
                       </CardContent>
                     </div>
 
-                    <div className="mr-6 flex items-center gap-3">
+                    <div className="mr-6 flex items-center gap-1">
+                      <Button
+                        type="button"
+                        variant={"outline"}
+                        size="sm"
+                        disabled={updateCartMutation.isPending}
+                        onClick={() =>
+                          updateCartMutation.mutate({
+                            product_id: cartLine.product_id,
+                            gameserver_id: cartLine.selected_gameserver_id,
+                            quantity: 1,
+                            increment: false,
+                          })
+                        }
+                      >
+                        -
+                      </Button>
+
                       <Popover>
                         <PopoverTrigger asChild>
-                          <Button variant={"ghost"}>{cartLine.quantity}</Button>
+                          <Button
+                            variant={"outline"}
+                            size="sm"
+                            className="text-xs"
+                            disabled={updateCartMutation.isPending}
+                          >
+                            {cartLine.quantity}
+                          </Button>
                         </PopoverTrigger>
 
                         <PopoverContent className="grid w-28 grid-cols-2">
@@ -134,8 +158,26 @@ function CartSheet() {
                       </Popover>
 
                       <Button
-                        variant={"ghost"}
-                        className="text-destructive hover:text-destructive"
+                        type="button"
+                        variant={"outline"}
+                        size="sm"
+                        disabled={updateCartMutation.isPending}
+                        onClick={() =>
+                          updateCartMutation.mutate({
+                            product_id: cartLine.product_id,
+                            gameserver_id: cartLine.selected_gameserver_id,
+                            quantity: 1,
+                            increment: true,
+                          })
+                        }
+                      >
+                        +
+                      </Button>
+
+                      <Button
+                        variant={"destructive"}
+                        className="text-xs"
+                        size="sm"
                         disabled={updateCartMutation.isPending}
                         onClick={() =>
                           updateCartMutation.mutate({
@@ -145,7 +187,7 @@ function CartSheet() {
                           })
                         }
                       >
-                        <TrashIcon weight="bold" />
+                        <TrashIcon weight="bold" className="h-2 w-2" />
                       </Button>
                     </div>
                   </div>

@@ -7,6 +7,8 @@ import { api } from "~/trpc/react";
 import {
   ArrowRightIcon,
   ShoppingBagOpenIcon,
+  SteamLogoIcon,
+  UserIcon,
 } from "@phosphor-icons/react/dist/ssr";
 import { formatCents } from "~/lib/money";
 import { useAuthDialog } from "~/stores/useAuthDialog";
@@ -18,6 +20,7 @@ export default function AuthCard() {
 
   const { data: auth } = api.paynow.getAuth.useQuery();
   const { data: cart } = api.paynow.getCart.useQuery();
+  const { data: store } = api.paynow.getStore.useQuery();
 
   const totalItems = React.useMemo(
     () =>
@@ -77,8 +80,13 @@ export default function AuthCard() {
           </>
         ) : (
           <>
-            <p className="py-4 font-semibold text-sm">
-              Please log in to start shopping
+            <p className="flex items-center gap-3 py-4 font-semibold text-sm">
+              {store?.game?.includes("minecraft") ? (
+                <UserIcon className="h-6 w-6" />
+              ) : (
+                <SteamLogoIcon className="h-6 w-6" />
+              )}
+              Login
             </p>
 
             <ArrowRightIcon
