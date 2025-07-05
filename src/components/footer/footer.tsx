@@ -3,6 +3,33 @@ import Link from "next/link";
 import { Separator } from "~/components/ui/separator";
 import { env } from "~/env";
 
+const USEFUL_LINKS = [
+  {
+    name: "Discord",
+    href: env.NEXT_PUBLIC_DISCORD_INVITE_URL,
+    target: "_blank",
+    rel: "noreferrer",
+  },
+  {
+    name: "User Agreement",
+    href: "https://paynow.gg/user-agreement",
+    target: "_blank",
+    rel: "noreferrer",
+  },
+  {
+    name: "Terms Of Use",
+    href: "https://paynow.gg/terms-of-use",
+    target: "_blank",
+    rel: "noreferrer",
+  },
+  {
+    name: "Privacy Policy",
+    href: "https://paynow.gg/privacy-policy",
+    target: "_blank",
+    rel: "noreferrer",
+  },
+];
+
 const Footer = () => {
   return (
     <div className="mt-32 flex flex-col border-t bg-card shadow-[0_-10px_25px_-5px_rgba(0,0,0,0.5)]">
@@ -22,15 +49,19 @@ const Footer = () => {
             <div>
               <h6>Useful Links</h6>
 
-              <ul className="mt-6 space-y-4">
-                <li>
-                  <Link
-                    href={env.NEXT_PUBLIC_DISCORD_INVITE_URL}
-                    className="text-muted-foreground hover:text-foreground"
-                  >
-                    Discord
-                  </Link>
-                </li>
+              <ul className="mt-4 space-y-2 text-sm">
+                {USEFUL_LINKS.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      href={link.href}
+                      target={link.target}
+                      rel={link.rel}
+                      className="text-muted-foreground hover:text-foreground"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
