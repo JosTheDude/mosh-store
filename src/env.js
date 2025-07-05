@@ -22,6 +22,8 @@ export const env = createEnv({
    * `NEXT_PUBLIC_`.
    */
   client: {
+    NEXT_PUBLIC_BACKGROUND_IMAGE_URL: z.string(),
+
     NEXT_PUBLIC_PAYNOW_STORE_ID: z.string(),
     NEXT_PUBLIC_DISCORD_INVITE_URL: z.string(),
 
@@ -36,6 +38,9 @@ export const env = createEnv({
    */
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
+
+    NEXT_PUBLIC_BACKGROUND_IMAGE_URL:
+      process.env.NEXT_PUBLIC_BACKGROUND_IMAGE_URL,
 
     NEXT_PUBLIC_PAYNOW_STORE_ID: process.env.NEXT_PUBLIC_PAYNOW_STORE_ID,
     NEXT_PUBLIC_DISCORD_INVITE_URL: process.env.NEXT_PUBLIC_DISCORD_INVITE_URL,

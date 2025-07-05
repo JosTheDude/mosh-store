@@ -100,14 +100,14 @@
     font-family: var(--font-montserrat), sans-serif;
 
     color: white;
-
-    background-image: linear-gradient(
-      to bottom,
-      var(--background),
-      var(--background-secondary)
-    ) !important;
+    background-color: black;
 
     overscroll-behavior: none;
+  }
+
+  html body[data-scroll-locked] {
+    overflow: visible !important;
+    margin-right: 0 !important;
   }
 
   button {

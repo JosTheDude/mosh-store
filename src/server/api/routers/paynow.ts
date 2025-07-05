@@ -2,8 +2,7 @@ import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
-import { TRPCError } from "@trpc/server";
-import axios from "axios";
+import SteamService from "../services/steam";
 import PayNowService from "./../services/paynow";
 
 export const paynowRouter = createTRPCRouter({
@@ -84,88 +83,17 @@ export const paynowRouter = createTRPCRouter({
     .mutation(async ({ input }) => {
       const { query } = input;
 
-      const params = new URLSearchParams(query);
-
-      if (params.get("openid.mode") !== "id_res") {
-        throw new TRPCError({
-          code: "BAD_REQUEST",
-          message: "Invaild OpenID Mode",
-        });
-      }
-
-      const requiredFields = [
-        "openid.op_endpoint",
-        "openid.claimed_id",
-        "openid.identity",
-        "openid.response_nonce",
-        "openid.assoc_handle",
-        "openid.signed",
-        "openid.sig",
-      ];
-
-      for (const field of requiredFields) {
-        if (!params.get(field)) {
-          throw new TRPCError({
-            code: "BAD_REQUEST",
-            message: "Some required Open ID Fields are missing",
-          });
-        }
-      }
-
-      if (
-        params.get("openid.op_endpoint") !==
-        "https://steamcommunity.com/openid/login"
-      ) {
-        throw new TRPCError({
-          code: "BAD_REQUEST",
-          message: "Invaild OP Endpoint",
-        });
-      }
-
-      const claimedId = params.get("openid.claimed_id");
-
-      if (!claimedId?.startsWith("https://steamcommunity.com/openid/id/")) {
-        throw new TRPCError({
-          code: "BAD_REQUEST",
-          message: "Invaild OpenID Claimed ID",
-        });
-      }
-
-      const verifyParams = new URLSearchParams(params);
-
-      verifyParams.set("openid.mode", "check_authentication");
-
-      const response = await axios.get(
-        "https://steamcommunity.com/openid/login",
-        { params: verifyParams },
-      );
-
-      if (!response.data.includes("is_valid:true")) {
-        throw new TRPCError({
-          code: "BAD_REQUEST",
-          message: "Could not validate Steam login",
-        });
-      }
-
-      const steamId = params.get("openid.claimed_id")?.split("/").pop();
-
-      if (!steamId) {
-        throw new TRPCError({
-          code: "BAD_REQUEST",
-          message: "Could not confirm SteamID64",
-        });
-      }
+      const steamId = await SteamService.resolveSteamIdFromOpenIdQS(query);
 
       const customerId = await PayNowService.findOrCreateSteamCustomer(steamId);
-      const token = await PayNowService.generateAuthToken(customerId);
 
-      console.log(token);
+      const token = await PayNowService.generateAuthToken(customerId);
 
       return token;
     }),
 
   getSteamLoginUrl: publicProcedure.query(async ({ ctx }) =>
-    PayNowService.getSteamLoginUrl(),
+    SteamService.getLoginUrl(),
   ),
 
   logout: publicProcedure.mutation(({ ctx }) => PayNowService.logout(ctx)),

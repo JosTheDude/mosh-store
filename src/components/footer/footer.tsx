@@ -1,50 +1,71 @@
-import { Card, CardContent } from "../ui/card";
+import { DiscordLogoIcon } from "@phosphor-icons/react/dist/ssr";
+import Link from "next/link";
+import { Separator } from "~/components/ui/separator";
+import { env } from "~/env";
 
-export default function Footer() {
+const Footer = () => {
   return (
-    <footer>
-      <div className="mx-auto mt-3 mb-6 max-w-7xl rounded-md p-4 xl:p-0">
-        <Card>
-          <CardContent>
-            <div className="flex flex-col gap-4 text-sm sm:flex-row sm:items-center sm:justify-between sm:gap-6">
-              <a
-                className="order-2 sm:order-1 sm:flex-1"
-                href="https://paynow.gg"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Powered by PayNow.gg
-              </a>
+    <div className="mt-32 flex flex-col border-t bg-card shadow-[0_-10px_25px_-5px_rgba(0,0,0,0.5)]">
+      <footer>
+        <div className="mx-auto max-w-screen-xl">
+          <div className="grid grid-cols-1 gap-x-16 gap-y-10 px-6 py-12 md:grid-cols-3 xl:px-0">
+            <div>
+              <h6>About Us</h6>
 
-              <div className="order-1 flex flex-col gap-4 sm:order-2 sm:flex-row sm:items-center sm:gap-6">
-                <a
-                  href="https://paynow.gg/user-agreement"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  User Agreement
-                </a>
+              <p className="mt-4 text-muted-foreground text-sm">
+                PayNow.gg Headless template - An integration of the PayNow.gg
+                Headless API built with Create T3 App, Next.js 15 and React 19
+                for kickstarting your next store.
+              </p>
+            </div>
 
-                <a
-                  href="https://paynow.gg/terms-of-service"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Terms of Use
-                </a>
+            <div>
+              <h6>Useful Links</h6>
 
-                <a
-                  href="https://paynow.gg/privacy-policy"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Privacy Policy
-                </a>
-              </div>
-            </div>{" "}
-          </CardContent>
-        </Card>
-      </div>
-    </footer>
+              <ul className="mt-6 space-y-4">
+                <li>
+                  <Link
+                    href={env.NEXT_PUBLIC_DISCORD_INVITE_URL}
+                    className="text-muted-foreground hover:text-foreground"
+                  >
+                    Discord
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h6>Contact Us</h6>
+
+              <p className="mt-4 text-muted-foreground text-sm">
+                If you have any questions or need assistance, feel free to reach
+                out to us through our Discord server or via email.
+              </p>
+            </div>
+          </div>
+
+          <Separator />
+
+          <div className="flex flex-col-reverse items-center justify-between gap-x-2 gap-y-5 px-6 py-8 sm:flex-row xl:px-0">
+            <div className="flex flex-col">
+              <span className="text-muted-foreground text-sm">
+                &copy; All Rights Reserved. Powered by&nbsp;
+                <Link href="https://paynow.gg" target="_blank">
+                  PayNow.gg.
+                </Link>
+              </span>
+            </div>
+
+            <div className="flex items-center gap-5 text-muted-foreground">
+              <Link href={env.NEXT_PUBLIC_DISCORD_INVITE_URL} target="_blank">
+                <DiscordLogoIcon className="h-5 w-5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
   );
-}
+};
+
+export default Footer;

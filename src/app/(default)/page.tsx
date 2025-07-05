@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="inline-block bg-gradient-to-r from-primary to-secondary bg-clip-text font-extrabold text-3xl text-transparent">
+        <CardTitle className="inline-block font-extrabold text-3xl">
           PayNow Store
         </CardTitle>
 

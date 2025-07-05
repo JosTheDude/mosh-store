@@ -59,7 +59,7 @@ export default function AuthDialogMinecraft({
       <DialogContent>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <DialogHeader>
-            <DialogTitle>Please enter your username to continue</DialogTitle>
+            <DialogTitle>Please enter your username</DialogTitle>
             <DialogDescription>Case sensitive, no caps</DialogDescription>
           </DialogHeader>
 

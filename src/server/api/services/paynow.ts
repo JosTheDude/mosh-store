@@ -305,17 +305,4 @@ export default class PayNowService {
 
     return giftCard.balance;
   }
-
-  public static async getSteamLoginUrl() {
-    const params = {
-      "openid.ns": "http://specs.openid.net/auth/2.0",
-      "openid.mode": "checkid_setup",
-      "openid.return_to": `${env.NEXT_PUBLIC_WEBSITE_URL}/auth/steam/return`,
-      "openid.realm": env.NEXT_PUBLIC_WEBSITE_URL,
-      "openid.identity": "http://specs.openid.net/auth/2.0/identifier_select",
-      "openid.claimed_id": "http://specs.openid.net/auth/2.0/identifier_select",
-    };
-
-    return `https://steamcommunity.com/openid/login?${new URLSearchParams(params).toString()}`;
-  }
 }
