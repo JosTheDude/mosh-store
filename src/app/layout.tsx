@@ -29,6 +29,7 @@ export default async function RootLayout({
     api.paynow.getAuth.prefetch(),
     api.paynow.getCart.prefetch(),
 
+    api.paynow.getTags.prefetch(),
     api.paynow.getNavlinks.prefetch(),
     api.paynow.getProducts.prefetch(),
     api.paynow.getModules.prefetch(),

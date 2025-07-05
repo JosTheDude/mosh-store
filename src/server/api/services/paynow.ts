@@ -19,6 +19,7 @@ import type Module from "../types/paynow/module";
 import type Navlink from "../types/paynow/navlink";
 import type Product from "../types/paynow/product";
 import type Store from "../types/paynow/store";
+import type Tag from "../types/paynow/tag";
 
 export default class PayNowService {
   private static HTTP: AxiosInstance = axios.create({
@@ -53,6 +54,14 @@ export default class PayNowService {
     return PayNowService.request<Navlink[]>({
       method: "GET",
       url: "/store/navlinks",
+      headers: ctx.payNowStorefrontHeaders,
+    });
+  }
+
+  public static async getTags(ctx: Context) {
+    return PayNowService.request<Tag[]>({
+      method: "GET",
+      url: "/store/tags",
       headers: ctx.payNowStorefrontHeaders,
     });
   }

@@ -16,6 +16,8 @@ export const paynowRouter = createTRPCRouter({
     PayNowService.getNavlinks(ctx),
   ),
 
+  getTags: publicProcedure.query(({ ctx }) => PayNowService.getTags(ctx)),
+
   getModules: publicProcedure.query(({ ctx }) => PayNowService.getModules(ctx)),
 
   getAuth: publicProcedure.query(({ ctx }) => PayNowService.getAuth(ctx)),

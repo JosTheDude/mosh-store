@@ -5,6 +5,7 @@ import {
   DiscordLogoIcon,
   PlayIcon,
 } from "@phosphor-icons/react/dist/ssr";
+import Link from "next/link";
 import { toast } from "sonner";
 import { twMerge } from "tailwind-merge";
 import AuthCard from "~/components/auth/auth-card";
@@ -15,7 +16,6 @@ import Footer from "~/components/footer/footer";
 import GiftcardBalanceCard from "~/components/modules/giftcard-balance-card";
 import PaymentGoalCard from "~/components/modules/payment-goal-card";
 import RecentPaymentsCard from "~/components/modules/recent-payments-card";
-import NavlinkCard from "~/components/navlink/navlink-card";
 import { env } from "~/env";
 import type Module from "~/server/api/types/paynow/module";
 import { api } from "~/trpc/react";
@@ -76,7 +76,7 @@ export default function DefaultLayout({
 
             <section>
               <div className="mx-auto md:max-w-7xl">
-                <div className="grid grid-cols-3 items-center py-6 md:py-12">
+                <div className="grid grid-cols-3 items-center py-6 md:py-4">
                   <button
                     type="button"
                     className="group hidden cursor-pointer items-center gap-6 lg:flex"
@@ -113,14 +113,16 @@ export default function DefaultLayout({
 
                   <div className="col-span-3 lg:col-span-1">
                     <div className="mx-auto flex size-52 items-center justify-center overflow-hidden">
-                      <img
-                        alt={store.name}
-                        src={
-                          store.logo_square_url ??
-                          "https://i.imgur.com/hKskz67.png"
-                        }
-                        className="h-full w-full animate-smooth-bob object-cover"
-                      />
+                      <Link href="/">
+                        <img
+                          alt={store.name}
+                          src={
+                            store.logo_square_url ??
+                            "https://i.imgur.com/hKskz67.png"
+                          }
+                          className="h-full w-full animate-smooth-bob object-cover"
+                        />
+                      </Link>
                     </div>
                   </div>
 
@@ -150,19 +152,17 @@ export default function DefaultLayout({
                   <div className="col-span-1 space-y-6">
                     <AuthCard />
 
-                    <NavlinkCard />
+                    {paymentGoalModule && (
+                      <PaymentGoalCard
+                        module={paymentGoalModule as Module<"payment_goal">}
+                      />
+                    )}
 
                     {giftcardBalanceModule && (
                       <GiftcardBalanceCard
                         module={
                           giftcardBalanceModule as Module<"giftcard_balance">
                         }
-                      />
-                    )}
-
-                    {paymentGoalModule && (
-                      <PaymentGoalCard
-                        module={paymentGoalModule as Module<"payment_goal">}
                       />
                     )}
 
@@ -181,6 +181,7 @@ export default function DefaultLayout({
             </main>
           </div>
         </div>
+
         <Footer />
       </div>
     </>
