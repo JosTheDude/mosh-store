@@ -12,4 +12,5 @@ export default interface CartLine {
     name: string;
     enabled: boolean;
   } | null;
+  subscription: boolean;
 }

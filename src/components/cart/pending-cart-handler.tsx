@@ -101,6 +101,7 @@ export default function PendingCartHandler() {
           product_id: productId,
           quantity,
           gameserver_id: gameServerId,
+          subscription,
         })
         .then(() => {
           cartSidebar.setOpen(true);
@@ -111,7 +112,7 @@ export default function PendingCartHandler() {
         });
     };
 
-    if (subscription || giftUsernameOrSteamId) {
+    if (giftUsernameOrSteamId) {
       handleDirectCheckout();
       return;
     }

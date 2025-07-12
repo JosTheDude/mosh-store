@@ -1,12 +1,14 @@
 "use client";
 
 import {
+  RepeatIcon,
   ShoppingBagOpenIcon,
   SignOutIcon,
   TrashIcon,
 } from "@phosphor-icons/react/dist/ssr";
 import React from "react";
 import { toast } from "sonner";
+import { Badge } from "~/components/ui/badge";
 import {
   Popover,
   PopoverContent,
@@ -90,16 +92,25 @@ function CartSheet() {
                   <div className="flex items-center">
                     <div className="flex-1">
                       <CardHeader>
-                        <CardTitle>{cartLine.name}</CardTitle>
+                        <CardTitle>
+                          <h4>{cartLine.name}</h4>
+                        </CardTitle>
                       </CardHeader>
 
-                      <CardContent>
+                      <CardContent className="flex flex-col space-y-3">
                         <p className="font-semibold text-green-500">
                           {formatCents(
                             cartLine.price * cartLine.quantity,
                             cart.currency,
                           )}
                         </p>
+
+                        {cartLine.subscription && (
+                          <Badge variant="default">
+                            <RepeatIcon weight="bold" />
+                            Subscription
+                          </Badge>
+                        )}
                       </CardContent>
                     </div>
 
@@ -113,8 +124,8 @@ function CartSheet() {
                           updateCartMutation.mutate({
                             product_id: cartLine.product_id,
                             gameserver_id: cartLine.selected_gameserver_id,
-                            quantity: 1,
-                            increment: false,
+                            quantity: -1,
+                            increment: true,
                           })
                         }
                       >

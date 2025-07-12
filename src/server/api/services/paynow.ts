@@ -131,6 +131,7 @@ export default class PayNowService {
         gift_to?: { platform: string; id: string } | null;
         gift_to_customer_id?: string | null;
         selected_gameserver_id?: string | null;
+        subscription?: boolean;
       }>;
     },
   ) {
@@ -148,6 +149,41 @@ export default class PayNowService {
           message: err.response.data.message,
         });
       }
+      throw err;
+    }
+  }
+
+  public static async checkoutFromCart(
+    ctx: Context,
+    input: {
+      subscription: boolean;
+      lines: Array<{
+        product_id: string;
+        quantity: number;
+        gift_to?: { platform: string; id: string } | null;
+        gift_to_customer_id?: string | null;
+        selected_gameserver_id?: string | null;
+        subscription?: boolean;
+      }>;
+    },
+  ) {
+    try {
+      return await PayNowService.request<{ url: string }>({
+        method: "POST",
+        url: "/store/cart/checkout",
+        headers: ctx.payNowStorefrontHeaders,
+        data: input,
+      });
+    } catch (err) {
+      console.log(err);
+
+      if (err instanceof AxiosError && err.response?.status === 400) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: err.response.data.message,
+        });
+      }
+
       throw err;
     }
   }

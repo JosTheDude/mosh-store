@@ -31,6 +31,7 @@ export const paynowRouter = createTRPCRouter({
         quantity: z.number(),
         gameserver_id: z.string().optional().nullable(),
         increment: z.boolean().default(true),
+        subscription: z.boolean().default(false),
       }),
     )
     .mutation(({ ctx, input }) => PayNowService.updateCartItem(ctx, input)),
@@ -57,6 +58,10 @@ export const paynowRouter = createTRPCRouter({
       }),
     )
     .mutation(({ ctx, input }) => PayNowService.checkout(ctx, input)),
+
+  checkoutFromCart: publicProcedure
+    .input(z.any())
+    .mutation(({ ctx, input }) => PayNowService.checkoutFromCart(ctx, input)),
 
   minecraftLogin: publicProcedure
     .input(
