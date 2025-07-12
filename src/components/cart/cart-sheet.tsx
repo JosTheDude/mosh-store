@@ -41,7 +41,7 @@ function CartSheet() {
     },
   });
 
-  const checkoutMutation = api.paynow.checkout.useMutation({
+  const checkoutMutation = api.paynow.checkoutFromCart.useMutation({
     onSuccess: (result) => {
       window.location.href = result.url;
     },
@@ -225,12 +225,7 @@ function CartSheet() {
 
           <Button
             variant={"default"}
-            onClick={() =>
-              checkoutMutation.mutate({
-                subscription: false,
-                lines: cart?.lines || [],
-              })
-            }
+            onClick={() => checkoutMutation.mutate(cart)}
             disabled={checkoutMutation.isPending || !cart || !cart.lines.length}
           >
             {checkoutMutation.isPending ? "Checking Out..." : "Checkout"}
