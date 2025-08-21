@@ -34,7 +34,7 @@ export default function RecentPaymentsCard({
                 {order.customer.steam?.name || order.customer.profile?.name}
               </p>
 
-              {order.lines.map((orderLine, idx) => (
+              {order.lines?.map((orderLine, idx) => (
                 // biome-ignore lint/suspicious/noArrayIndexKey: n/a
                 <p key={idx} className="text-secondary-foreground">
                   {orderLine.product_name}
