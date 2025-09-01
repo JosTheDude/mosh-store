@@ -15,7 +15,7 @@ An integration of the PayNow.gg Headless API built with Create T3 App, Next.js 1
 
 ## Demo
 
-You can view a demo of this repository [here](https://headless-template.pages.dev/)
+You can view a demo of this repository [here](https://headless-template.paynow.gg/)
 
 ## Prerequisites
 
