@@ -1,7 +1,5 @@
 "use client";
 
-export const runtime = "edge";
-
 import { use, useMemo, useState } from "react";
 import ProductCard from "~/components/product/product-card";
 import ProductCheckoutDetailsDialog, {

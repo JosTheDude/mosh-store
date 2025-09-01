@@ -3,8 +3,6 @@ import { type NextRequest, NextResponse } from "next/server";
 import { env } from "~/env";
 import { api } from "~/trpc/server";
 
-export const runtime = "edge";
-
 export const dynamic = "force-dynamic";
 
 export async function GET(

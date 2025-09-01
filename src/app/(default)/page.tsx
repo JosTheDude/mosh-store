@@ -1,7 +1,5 @@
 "use client";
 
-export const runtime = "edge";
-
 import NavlinkCards from "~/components/navlink/navlink-cards";
 
 import {
