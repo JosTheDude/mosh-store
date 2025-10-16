@@ -63,7 +63,7 @@ export default function DefaultLayout({
       <div className="flex min-h-screen flex-col">
         <div className="relative flex min-h-screen flex-col">
           <div
-            className="-z-10 pointer-events-none absolute inset-0 bg-center bg-cover bg-fixed bg-no-repeat bg-origin-content opacity-25 blur-xl"
+            className="-z-10 pointer-events-none absolute inset-0 bg-center bg-cover bg-fixed bg-no-repeat bg-origin-content opacity-25"
             style={{
               backgroundImage: `url('${env.NEXT_PUBLIC_BACKGROUND_IMAGE_URL}')`,
             }}
