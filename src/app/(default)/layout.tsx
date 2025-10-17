@@ -118,7 +118,7 @@ export default function DefaultLayout({
                           alt={store.name}
                           src={
                             store.logo_square_url ??
-                            "https://i.imgur.com/hKskz67.png"
+                            "logo.webp"
                           }
                           className="h-full w-full animate-smooth-bob object-cover"
                         />
