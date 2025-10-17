@@ -40,12 +40,17 @@ export default function AuthDialogMinecraft({
   const minecraftLoginMutation = api.paynow.minecraftLogin.useMutation({
     onSuccess: async () => {
       form.reset();
-
-      await utils.paynow.getAuth.invalidate();
-
       authDialog.setOpen(false);
+
+      // Invalidate and refetch auth queries to update the UI state
+      await Promise.all([
+        utils.paynow.getAuth.invalidate(),
+        utils.paynow.getCart.invalidate(),
+        utils.paynow.getAuth.refetch(),
+        utils.paynow.getCart.refetch(),
+      ]);
     },
-    onError: () => {
+    onError: (error) => {
       form.setFocus("username");
     },
   });
@@ -59,26 +64,34 @@ export default function AuthDialogMinecraft({
       <DialogContent>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <DialogHeader>
-            <DialogTitle>Please enter your username</DialogTitle>
-            <DialogDescription>Case sensitive, no caps</DialogDescription>
+            <DialogTitle className="font-semibold text-lg">
+              Enter your Minecraft username
+            </DialogTitle>
+            <DialogDescription>
+              Enter your username, case sensitive
+            </DialogDescription>
           </DialogHeader>
 
           {minecraftLoginMutation.error?.message && (
-            <p className="font-bold text-red-500 text-sm">
-              {minecraftLoginMutation.error.message}
+            <p className="text-red-500 text-sm">
+              {minecraftLoginMutation.error.message.includes("400")
+                ? "Did not find the requested username. Is it spelt correctly?"
+                : minecraftLoginMutation.error.message}
             </p>
           )}
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2 sm:gap-4">
             <Button
               type="button"
               variant={
                 form.watch("platform") === "java" ? "default" : "outline"
               }
-              size="lg"
+              size="sm"
+              className="px-2 text-xs sm:px-4 sm:text-sm"
               onClick={() => form.setValue("platform", "java")}
             >
-              Java Edition
+              <span className="hidden sm:inline">Java Edition</span>
+              <span className="sm:hidden">Java</span>
             </Button>
 
             <Button
@@ -86,10 +99,12 @@ export default function AuthDialogMinecraft({
               variant={
                 form.watch("platform") === "bedrock" ? "default" : "outline"
               }
-              size="lg"
+              size="sm"
+              className="px-2 text-xs sm:px-4 sm:text-sm"
               onClick={() => form.setValue("platform", "bedrock")}
             >
-              Bedrock Edition
+              <span className="hidden sm:inline">Bedrock Edition</span>
+              <span className="sm:hidden">Bedrock</span>
             </Button>
           </div>
 
@@ -100,7 +115,14 @@ export default function AuthDialogMinecraft({
             required
           />
 
-          <DialogFooter>
+          <DialogFooter className="w-full flex-row items-center gap-3">
+            {form.watch("platform") === "bedrock" && (
+              <p className="flex-1 text-left text-muted-foreground text-xs">
+                Bedrock Edition includes phones, consoles, tablets, and Windows
+                10 Edition.
+              </p>
+            )}
+
             <Button
               type="submit"
               disabled={
@@ -108,6 +130,7 @@ export default function AuthDialogMinecraft({
                 minecraftLoginMutation.isPending ||
                 !form.watch("username").trim()
               }
+              className="ml-auto"
             >
               <SignInIcon />
               {cartSidebar.pendingItemLoading ||
