@@ -56,9 +56,8 @@ const Footer = () => {
               </h6>
 
               <p className="mt-4 text-muted-foreground text-sm">
-                Mosh is a minigames network based around
-                quick and fun bite-sized games
-                with persistent progression!
+                Mosh is a minigames network based around quick and fun
+                bite-sized games with persistent progression!
               </p>
 
               <p className="mt-2 text-muted-foreground text-sm">
@@ -146,8 +145,8 @@ const Footer = () => {
                 | All rights reserved.
               </span>
               <span className="text-muted-foreground text-sm">
-                Mosh is not an official Minecraft product. Mosh is
-                not approved by or associated with Mojang or Microsoft.
+                Mosh is not an official Minecraft product. Mosh is not approved
+                by or associated with Mojang or Microsoft.
               </span>
               <span className="text-muted-foreground text-sm">
                 This websites' checkout process is owned & operated by{" "}
@@ -163,8 +162,8 @@ const Footer = () => {
 
               <span className="mt-2 text-muted-foreground text-sm">
                 All payments are final and non-refundable. Attempting a
-                chargeback or fraud will result in permanent ban from Mosh
-                and potentially other PayNow stores.
+                chargeback or fraud will result in permanent ban from Mosh and
+                potentially other PayNow stores.
               </span>
             </div>
 
