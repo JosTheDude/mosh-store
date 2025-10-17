@@ -16,7 +16,7 @@ export default function Home() {
       <Card>
         <CardHeader>
           <CardTitle className="inline-block font-extrabold text-3xl">
-            PayNow Store
+            Official Mosh Store
           </CardTitle>
 
           <CardDescription className="hidden" />
@@ -25,24 +25,7 @@ export default function Home() {
         <CardContent className="space-y-5">
           <div className="font-light">
             <p>
-              From this page you can buy ranks and other perks to help support
-              the server.
-            </p>
-
-            <p>
-              This store doesn't provide real rewards and is only a demo
-              template.
-            </p>
-          </div>
-
-          <div className="space-y-1">
-            <h2 className="font-bold text-2xl">
-              What payment methods do you accept?
-            </h2>
-
-            <p className="font-light">
-              We accept a variety of payment methods, including PayPal, credit
-              cards, and more.
+              Welcome to the Mosh Store! 
             </p>
           </div>
         </CardContent>
