@@ -16,7 +16,7 @@ export async function generateMetadata() {
   const store = await api.paynow.getStore();
 
   return {
-    title: `Store | + ${store.name}`,
+    title: `Store | ${store.name}`,
   };
 }
 
