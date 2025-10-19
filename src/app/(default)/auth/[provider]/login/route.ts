@@ -33,3 +33,5 @@ export async function GET(
 
   return NextResponse.redirect(result);
 }
+
+export const runtime = "edge";

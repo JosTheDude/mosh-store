@@ -24,9 +24,7 @@ export default function Home() {
 
         <CardContent className="space-y-5">
           <div className="font-light">
-            <p>
-              Welcome to the Mosh Store! 
-            </p>
+            <p>Welcome to the Mosh Store!</p>
           </div>
         </CardContent>
       </Card>
@@ -35,3 +33,5 @@ export default function Home() {
     </div>
   );
 }
+
+export const runtime = "edge";

@@ -107,10 +107,7 @@ export default function ProductInfoDialog({
                     <span className="sr-only">Close</span>
                   </DialogClose>
                 </div>
-
               </div>
-
-              
             </div>
 
             {/* Bottom section with price and purchase button */}
