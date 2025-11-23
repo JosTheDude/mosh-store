@@ -116,7 +116,7 @@ export default function DefaultLayout({
                       <Link href="/">
                         <img
                           alt={store.name}
-                          src={store.logo_square_url ?? "logo.webp"}
+                          src={store.logo_square_url ?? "./logo.webp"}
                           className="h-full w-full animate-smooth-bob object-cover"
                         />
                       </Link>
